@@ -10,7 +10,7 @@ ifndef LIBSODIUM_CLIENT_DIR
 $(error LIBSODIUM_CLIENT_DIR is not set)
 endif
 
-CC = riscv64-unknown-linux-gnu-g++
+CC = riscv32-unknown-linux-gnu-g++
 
 SDK_LIB_DIR = $(KEYSTONE_SDK_DIR)/lib
 SDK_HOST_LIB = $(SDK_LIB_DIR)/libkeystone-host.a

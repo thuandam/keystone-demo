@@ -9,7 +9,7 @@ built the sdk tests and run them successfully in qemu.
 You must set KEYSTONE_DIR to the directory of a built
 keystone clone.
 
-You must have the riscv64 gcc on-path as well. (e.g. run
+You must have the riscv32 gcc on-path as well. (e.g. run
 'source source.sh' in the Keystone directory.
 
 If you have already started building libsodium/etc, it is not
@@ -30,9 +30,9 @@ then
     exit 0
 fi
 
-if [[ ! $(command -v riscv64-unknown-linux-gnu-gcc) ]]
+if [[ ! $(command -v riscv32-unknown-linux-gnu-gcc) ]]
 then
-    echo "No riscv64 gcc available. Make sure you've run \"source source.sh\" in the Keystone directory (or equivalent.)";
+    echo "No riscv32 gcc available. Make sure you've run \"source source.sh\" in the Keystone directory (or equivalent.)";
     exit 0
 fi
 
@@ -51,7 +51,7 @@ cd libsodium_server
 git checkout 4917510626c55c1f199ef7383ae164cf96044aea
 patch -p1 < $DEMO_DIR/sodium_patches/configure.ac.patch
 ./autogen.sh
-./configure --host=riscv64-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
+./configure --host=riscv32-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
 make
 export LIBSODIUM_DIR=$(pwd)/src/libsodium/
 cd ..
@@ -60,7 +60,7 @@ cd ..
 git clone https://github.com/jedisct1/libsodium.git libsodium_client
 cd libsodium_client
 git checkout 4917510626c55c1f199ef7383ae164cf96044aea
-./configure --host=riscv64-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
+./configure --host=riscv32-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
 make
 export LIBSODIUM_CLIENT_DIR=$(pwd)/src/libsodium/
 cd ..

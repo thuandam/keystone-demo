@@ -1,7 +1,7 @@
-CC = riscv64-unknown-linux-gnu-gcc
+CC = riscv32-unknown-linux-gnu-gcc
 CFLAGS = -Wall -Werror
-LINK = riscv64-unknown-linux-gnu-ld
-AS = riscv64-unknown-linux-gnu-as
+LINK = riscv32-unknown-linux-gnu-ld
+AS = riscv32-unknown-linux-gnu-as
 
 SDK_LIB_DIR = ../../lib
 SDK_APP_LIB = $(SDK_LIB_DIR)/libkeystone-eapp.a
