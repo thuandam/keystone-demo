@@ -42,14 +42,18 @@ DEMO_DIR=$(pwd)
 
 set -e
 
-mkdir -p libsodium_builds
+if ! [ -d libsodium_builds ]; then
+    mkdir -p libsodium_builds
+fi
 cd libsodium_builds
 
 # Clone, checkout, and build the server libsodium
-git clone https://github.com/jedisct1/libsodium.git libsodium_server
+if ! [ -d libsodium_server ]; then
+    git clone https://github.com/jedisct1/libsodium.git libsodium_server
+fi
 cd libsodium_server
 git checkout 4917510626c55c1f199ef7383ae164cf96044aea
-patch -p1 < $DEMO_DIR/sodium_patches/configure.ac.patch
+patch -N -p1 < $DEMO_DIR/sodium_patches/configure.ac.patch || echo
 ./autogen.sh
 ./configure --host=riscv32-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
 make -j`nproc`
@@ -57,7 +61,9 @@ export LIBSODIUM_DIR=$(pwd)/src/libsodium/
 cd ..
 
 # Clone, checkout, and build the client libsodium
-git clone https://github.com/jedisct1/libsodium.git libsodium_client
+if ! [ -d libsodium_client ]; then
+    git clone https://github.com/jedisct1/libsodium.git libsodium_client
+fi
 cd libsodium_client
 git checkout 4917510626c55c1f199ef7383ae164cf96044aea
 ./configure --host=riscv32-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
