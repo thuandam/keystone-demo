@@ -81,5 +81,7 @@ clean:
 	$(foreach app, $(APPS), \
 		$(MAKE) -C $(app) clean; \
 	)
+	make -C libsodium_builds/libsodium_client clean
+	make -C libsodium_builds/libsodium_server clean
 
 .PHONY: getandsethash clean

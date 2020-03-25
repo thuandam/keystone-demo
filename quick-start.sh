@@ -52,7 +52,7 @@ git checkout 4917510626c55c1f199ef7383ae164cf96044aea
 patch -p1 < $DEMO_DIR/sodium_patches/configure.ac.patch
 ./autogen.sh
 ./configure --host=riscv32-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
-make
+make -j`nproc`
 export LIBSODIUM_DIR=$(pwd)/src/libsodium/
 cd ..
 
@@ -61,7 +61,7 @@ git clone https://github.com/jedisct1/libsodium.git libsodium_client
 cd libsodium_client
 git checkout 4917510626c55c1f199ef7383ae164cf96044aea
 ./configure --host=riscv32-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
-make
+make -j`nproc`
 export LIBSODIUM_CLIENT_DIR=$(pwd)/src/libsodium/
 cd ..
 
@@ -72,7 +72,7 @@ echo "Copying expected sm hash from riscv-pk, this may be incorrect!"
 cp $KEYSTONE_SDK_DIR/../riscv-pk/hash/*.h include/
 
 # Build the demo
-make
+make -j`nproc`
 make trusted_client.riscv
 
 # Copy the demo files
