@@ -7,8 +7,8 @@ if [ "${output_path}xxx" = "xxx" ]; then
     exit
 fi
 
-if [ -z "$KEYSTONE_DIR" -a "${KEYSTONE_DIR+xxx}" = "xxx" ]; then
-    echo You MUST set KEYSTONE_DIR.;
+if [ -z "$KEYSTONE_BUILD_DIR" -a "${KEYSTONE_BUILD_DIR+xxx}" = "xxx" ]; then
+    echo You MUST set KEYSTONE_BUILD_DIR.;
     exit
 fi
 
@@ -22,7 +22,7 @@ extracthash () {
     # Generalize me!
     expect_commands='
     set timeout 60
-    cd $::env(KEYSTONE_DIR)
+    cd $::env(KEYSTONE_BUILD_DIR)
     spawn ./scripts/run-qemu.sh
     expect "*?ogin" { send "root\r" }
     expect "*?assword" { send "sifive\r" }

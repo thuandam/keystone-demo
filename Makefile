@@ -71,8 +71,8 @@ getandsethash:
 	./scripts/get_attestation.sh ./include
 
 copybins:
-	mkdir -p $(KEYSTONE_DIR)/buildroot_overlay/root/keystone-demo/
-	cp $(TCLIENT) $(EHOST) $(SERVER) $(RUNTIME) $(KEYSTONE_DIR)/buildroot_overlay/root/keystone-demo/
+	mkdir -p $(KEYSTONE_BUILD_DIR)/overlay/root/keystone-demo/
+	cp $(TCLIENT) $(EHOST) $(SERVER) $(RUNTIME) $(KEYSTONE_BUILD_DIR)/overlay/root/keystone-demo/
 	@echo "Binaries copied to buildroot overlay in Keystone.\n******************************************************************************************\nRun \"make image\" in your keystone build directory to include demo binaries in image build.\n******************************************************************************************\n"
 
 clean:
